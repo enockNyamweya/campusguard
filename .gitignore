@@ -15,9 +15,12 @@ vgcore.*
 
 # Visual Paradigm temporary and backup files
 *.vpp.bak
+*.vpp.*
+*.vpp.lck
 *.vpp~
 ~*
 *.tmp
+*.txt
 
 # IDE / Editor configuration
 .vscode/
