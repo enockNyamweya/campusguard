@@ -1,0 +1,30 @@
+# Compiled Object files, executables, and libraries
+*.o
+*.obj
+*.exe
+*.out
+*.app
+campusguard
+bin/
+build/
+
+# Debug and Profiling
+*.dSYM/
+gmon.out
+vgcore.*
+
+# Visual Paradigm temporary and backup files
+*.vpp.bak
+*.vpp~
+~*
+*.tmp
+
+# IDE / Editor configuration
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS-specific files
+.DS_Store
+Thumbs.db
