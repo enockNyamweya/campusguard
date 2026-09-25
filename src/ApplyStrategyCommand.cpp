@@ -3,23 +3,39 @@
 #include "Incident.h"
 #include "DoorControlInterface.h"
 #include "CampusMediator.h"
+#include <iostream>
+
+using namespace std;
 
 ApplyStrategyCommand::ApplyStrategyCommand(ResponseStrategy* s, Incident* inc, DoorControlInterface* d, CampusMediator* m, const std::string& loc)
     : strategy(s), incident(inc), doors(d), mediator(m), location(loc) {
-	// TODO - implement ApplyStrategyCommand::ApplyStrategyCommand
+	
 }
 
 bool ApplyStrategyCommand::execute() {
-	// TODO - implement ApplyStrategyCommand::execute
-	throw "Not yet implemented";
+	cout <<"[Command] Executing ApplyStrategyCommand for zone '"<<location<<".\n";
+
+	if (incident){
+		incident->dispatchResponders();
+	}
+
+	if (strategy){
+		strategy->executeTactic(location, doors, mediator);
+	}
+
+	return true;
 }
 
 bool ApplyStrategyCommand::undo() {
-	// TODO - implement ApplyStrategyCommand::undo
-	throw "Not yet implemented";
+	cout <<"[CommandUndo] Rolling back ApplyStrategyCommand for zone '"<<location<<"'. Restoring default access.\n";
+
+	if(doors){
+		doors->unlockZone(location);
+	}
+	return true;
 }
 
 std::string ApplyStrategyCommand::getName() {
-	// TODO - implement ApplyStrategyCommand::getName
+	
 	return "ApplyStrategyCommand";
 }
