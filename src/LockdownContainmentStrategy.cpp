@@ -1,17 +1,27 @@
 #include "LockdownContainmentStrategy.h"
 #include "DoorControlInterface.h"
 #include "CampusMediator.h"
+#include <iostream>
+
+using namespace std;
 
 LockdownContainmentStrategy::LockdownContainmentStrategy() {
-	// TODO - implement LockdownContainmentStrategy::LockdownContainmentStrategy
+	
 }
 
 void LockdownContainmentStrategy::executeTactic(const std::string& loc, DoorControlInterface* doors, CampusMediator* med) {
-	// TODO - implement LockdownContainmentStrategy::executeTactic
-	throw "Not yet implemented";
+	cout << "[Strategy: Lockdown Containment] Executing lockdown protocol for zone '"<<loc<<"'.\n";
+
+	if(doors){
+		doors->lockZone(loc);
+
+	}
+
+	if(med){
+		med->notify(nullptr, "LOCKDOWN_TRIGGERED", loc);
+	}
 }
 
 std::string LockdownContainmentStrategy::getStrategyName() {
-	// TODO - implement LockdownContainmentStrategy::getStrategyName
-	throw "Not yet implemented";
+	return "Lockdown Containment Strategy";
 }
