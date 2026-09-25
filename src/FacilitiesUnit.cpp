@@ -1,20 +1,21 @@
 #include "FacilitiesUnit.h"
-
+#include <iostream>
+ 
 FacilitiesUnit::FacilitiesUnit(std::string id, CampusMediator* med) : ResponseUnit(id, med) {
-	// TODO - implement FacilitiesUnit::FacilitiesUnit
 }
-
+ 
 void FacilitiesUnit::isolateHVAC(const std::string& building) {
-	// TODO - implement FacilitiesUnit::isolateHVAC
-	throw "Not yet implemented";
+    std::cout << "[FacilitiesUnit " << getId() << "] Isolating HVAC in " << building << std::endl;
+    sendEvent("HVAC_ISOLATED", building);
 }
-
+ 
 void FacilitiesUnit::restoreHVAC(const std::string& building) {
-	// TODO - implement FacilitiesUnit::restoreHVAC
-	throw "Not yet implemented";
+    std::cout << "[FacilitiesUnit " << getId() << "] Restoring HVAC in " << building << std::endl;
+    sendEvent("HVAC_RESTORED", building);
 }
-
+ 
 void FacilitiesUnit::receiveNotification(const std::string& senderId, const std::string& event, const std::string& data) {
-	// TODO - implement FacilitiesUnit::receiveNotification
-	throw "Not yet implemented";
+    if (event == "FIRE_DETECTED") {
+        isolateHVAC(data);
+    }
 }
