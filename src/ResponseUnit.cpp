@@ -1,20 +1,21 @@
 #include "ResponseUnit.h"
-
-ResponseUnit::ResponseUnit(std::string id, CampusMediator* med) {
-	// TODO - implement ResponseUnit::ResponseUnit
-	throw "Not yet implemented";
+#include "CampusMediator.h"
+ 
+ResponseUnit::ResponseUnit(std::string id, CampusMediator* med) : mediator(med), unitId(id) {
+    if (mediator) {
+        mediator->registerColleague(this);
+    }
 }
-
+ 
 ResponseUnit::~ResponseUnit() {
-	// TODO - implement ResponseUnit::~ResponseUnit
 }
-
+ 
 std::string ResponseUnit::getId() const {
-	// TODO - implement ResponseUnit::getId
-	throw "Not yet implemented";
+    return unitId;
 }
-
+ 
 void ResponseUnit::sendEvent(const std::string& event, const std::string& data) {
-	// TODO - implement ResponseUnit::sendEvent
-	throw "Not yet implemented";
+    if (mediator) {
+        mediator->notify(this, event, data);
+    }
 }
