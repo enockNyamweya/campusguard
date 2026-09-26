@@ -1,25 +1,13 @@
 #include "ContainedState.h"
+#include "ResolvedState.h"
+#include "Incident.h"
 
-ContainedState::ContainedState() {
-	// TODO - implement ContainedState::ContainedState
-}
-
-bool ContainedState::handleDispatch(Incident* context) {
-	// TODO - implement ContainedState::handleDispatch
-	throw "Not yet implemented";
-}
-
-bool ContainedState::handleContain(Incident* context) {
-	// TODO - implement ContainedState::handleContain
-	throw "Not yet implemented";
-}
-
+ContainedState::ContainedState() = default;
+bool ContainedState::handleDispatch(Incident*) { return false; }
+bool ContainedState::handleContain(Incident*) { return false; }
 bool ContainedState::handleResolve(Incident* context) {
-	// TODO - implement ContainedState::handleResolve
-	throw "Not yet implemented";
+    if (!context) return false;
+    context->changeState(new ResolvedState());
+    return true;
 }
-
-std::string ContainedState::getStateName() {
-	// TODO - implement ContainedState::getStateName
-	throw "Not yet implemented";
-}
+std::string ContainedState::getStateName() { return "Contained"; }
