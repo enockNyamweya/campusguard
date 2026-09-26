@@ -1,3 +1,3 @@
 #include "IncidentState.h"
-
-// Pure abstract base class - interface only
+// Rejected unless a concrete state explicitly permits cancellation.
+bool IncidentState::handleCancel(Incident*) { return false; }
