@@ -1,25 +1,19 @@
 #include "DispatchedState.h"
+#include "ContainedState.h"
+#include "ReportedState.h"
+#include "Incident.h"
 
-DispatchedState::DispatchedState() {
-	// TODO - implement DispatchedState::DispatchedState
-}
-
-bool DispatchedState::handleDispatch(Incident* context) {
-	// TODO - implement DispatchedState::handleDispatch
-	throw "Not yet implemented";
-}
-
+DispatchedState::DispatchedState() = default;
+bool DispatchedState::handleDispatch(Incident*) { return false; }
 bool DispatchedState::handleContain(Incident* context) {
-	// TODO - implement DispatchedState::handleContain
-	throw "Not yet implemented";
+    if (!context) return false;
+    context->changeState(new ContainedState());
+    return true;
 }
-
-bool DispatchedState::handleResolve(Incident* context) {
-	// TODO - implement DispatchedState::handleResolve
-	throw "Not yet implemented";
+bool DispatchedState::handleResolve(Incident*) { return false; }
+bool DispatchedState::handleCancel(Incident* context) {
+    if (!context) return false;
+    context->changeState(new ReportedState());
+    return true;
 }
-
-std::string DispatchedState::getStateName() {
-	// TODO - implement DispatchedState::getStateName
-	throw "Not yet implemented";
-}
+std::string DispatchedState::getStateName() { return "Dispatched"; }
