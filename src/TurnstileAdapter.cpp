@@ -1,30 +1,43 @@
 #include "TurnstileAdapter.h"
-
-int TurnstileAdapter::mapZoneToSector(const std::string& zone) {
-	// TODO - implement TurnstileAdapter::mapZoneToSector
-	throw "Not yet implemented";
+#include <functional>
+#include <iostream>
+ 
+TurnstileAdapter::TurnstileAdapter(LegacyTurnstileSystem* legacy) : legacyHardware(legacy) {
 }
-
-TurnstileAdapter::TurnstileAdapter(LegacyTurnstileSystem* legacy) {
-	// TODO - implement TurnstileAdapter::TurnstileAdapter
-	throw "Not yet implemented";
-}
-
+ 
 TurnstileAdapter::~TurnstileAdapter() {
-	// TODO - implement TurnstileAdapter::~TurnstileAdapter
 }
-
+ 
+int TurnstileAdapter::mapZoneToSector(const std::string& zone) {
+    std::hash<std::string> hasher;
+    return static_cast<int>(hasher(zone) % 9000) + 100;
+}
+ 
 bool TurnstileAdapter::lockZone(const std::string& zone) {
-	// TODO - implement TurnstileAdapter::lockZone
-	throw "Not yet implemented";
+    if (!legacyHardware) {
+        return false;
+    }
+    int sector = mapZoneToSector(zone);
+    std::cout << "[TurnstileAdapter] lockZone(\"" << zone << "\") -> sector " << sector << std::endl;
+    int result = legacyHardware->raw_set_barrier(sector, 1);
+    return result == 0;
 }
-
+ 
 bool TurnstileAdapter::unlockZone(const std::string& zone) {
-	// TODO - implement TurnstileAdapter::unlockZone
-	throw "Not yet implemented";
+    if (!legacyHardware) {
+        return false;
+    }
+    int sector = mapZoneToSector(zone);
+    std::cout << "[TurnstileAdapter] unlockZone(\"" << zone << "\") -> sector " << sector << std::endl;
+    int result = legacyHardware->raw_set_barrier(sector, 0);
+    return result == 0;
 }
-
+ 
 bool TurnstileAdapter::isZoneLocked(const std::string& zone) {
-	// TODO - implement TurnstileAdapter::isZoneLocked
-	throw "Not yet implemented";
+    if (!legacyHardware) {
+        return false;
+    }
+    int sector = mapZoneToSector(zone);
+    int status = legacyHardware->get_sector_status(sector);
+    return status == 1;
 }
