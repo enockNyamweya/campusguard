@@ -4,6 +4,8 @@
 *.exe
 *.out
 *.app
+*.png
+*.html
 campusguard
 bin/
 build/
