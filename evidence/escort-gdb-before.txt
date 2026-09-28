@@ -1,0 +1,69 @@
+Breakpoint 1 at 0x140006d01: file C:\Users\terva\OneDrive\Documents\214 Assignment 1\CampusGuard-Group\src\SecurityUnit.cpp, line 10.
+[New Thread 25588.0x4d58]
+[New Thread 25588.0x2bcc]
+[New Thread 25588.0x3e64]
+[Incident #1001] Reported: Solvent leak and fumes at Chemistry Lab
+[Incident #1002] Reported: Unauthorised armed entry at Library
+
+=== Story 1: chemical spill ===
+[Incident #1001] Rejected resolve while Reported
+[OperatorConsole] Execute PerimeterLockCommand
+[Legacy] sector=101 lockFlag=1 result=0
+[Adapter] Chemistry Lab -> sector 101: locked
+[OperatorConsole] Undo PerimeterLockCommand
+[Legacy] sector=101 lockFlag=0 result=0
+[Adapter] Chemistry Lab -> sector 101: unlocked
+[Facade] Chemical spill: Chemistry Lab
+[OperatorConsole] Execute DispatchUnitCommand
+[Incident #1001] Reported -> Dispatched
+[Unit SEC-01] Assigned to incident #1001
+[CentralDispatchMediator] SEC-01 -> UNIT_DISPATCHED (Chemistry Lab)
+[Unit FAC-01] UNIT_DISPATCHED at Chemistry Lab from SEC-01
+[Unit FIRE-01] UNIT_DISPATCHED at Chemistry Lab from SEC-01
+[OperatorConsole] Execute ApplyStrategyCommand
+[Legacy] sector=101 lockFlag=1 result=0
+[Adapter] Chemistry Lab -> sector 101: locked
+[Strategy: Lockdown Containment] Restrict access to Chemistry Lab
+[CentralDispatchMediator] SYSTEM -> LOCKDOWN_TRIGGERED (Chemistry Lab)
+[Unit SEC-01] LOCKDOWN_TRIGGERED at Chemistry Lab from SYSTEM
+[Unit FAC-01] LOCKDOWN_TRIGGERED at Chemistry Lab from SYSTEM
+[Unit FIRE-01] LOCKDOWN_TRIGGERED at Chemistry Lab from SYSTEM
+[CentralDispatchMediator] SYSTEM -> CHEMICAL_SPILL (Chemistry Lab)
+[Unit SEC-01] CHEMICAL_SPILL at Chemistry Lab from SYSTEM
+[Legacy] sector=101 lockFlag=1 result=0
+[Adapter] Chemistry Lab -> sector 101: locked
+[CentralDispatchMediator] SEC-01 -> ZONE_CORDONED (Chemistry Lab)
+[MedicalTeam MED-01] Deploying triage at Chemistry Lab
+[CentralDispatchMediator] MED-01 -> TRIAGE_DEPLOYED (Chemistry Lab)
+[Unit SEC-01] TRIAGE_DEPLOYED at Chemistry Lab from MED-01
+[Unit FAC-01] TRIAGE_DEPLOYED at Chemistry Lab from MED-01
+[Unit FIRE-01] TRIAGE_DEPLOYED at Chemistry Lab from MED-01
+[Unit FAC-01] ZONE_CORDONED at Chemistry Lab from SEC-01
+[Unit FIRE-01] ZONE_CORDONED at Chemistry Lab from SEC-01
+[SecurityUnit SEC-01] Cordon established at Chemistry Lab
+[Unit FAC-01] CHEMICAL_SPILL at Chemistry Lab from SYSTEM
+[FacilitiesUnit FAC-01] HVAC isolated in Chemistry Lab
+[CentralDispatchMediator] FAC-01 -> HVAC_ISOLATED (Chemistry Lab)
+[Unit SEC-01] HVAC_ISOLATED at Chemistry Lab from FAC-01
+[Unit FIRE-01] HVAC_ISOLATED at Chemistry Lab from FAC-01
+[Unit FIRE-01] CHEMICAL_SPILL at Chemistry Lab from SYSTEM
+[FireResponseUnit FIRE-01] Chemical response deployed at Chemistry Lab
+[MedicalTeam MED-01] Requesting hospital escort
+
+Thread 1 hit Breakpoint 1, SecurityUnit::clearEscortRoute (this=0x5ff7b0, zone="MED-01") at C:\Users\terva\OneDrive\Documents\214 Assignment 1\CampusGuard-Group\src\SecurityUnit.cpp:10
+10	    sendEvent("ROUTE_CLEARED", zone);
+#0  SecurityUnit::clearEscortRoute (this=0x5ff7b0, zone="MED-01") at C:\Users\terva\OneDrive\Documents\214 Assignment 1\CampusGuard-Group\src\SecurityUnit.cpp:10
+#1  0x00007ff6af636ee8 in SecurityUnit::receiveNotification (this=0x5ff7b0, sender="MED-01", event="HOSPITAL_ESCORT_REQUESTED", data="MED-01") at C:\Users\terva\OneDrive\Documents\214 Assignment 1\CampusGuard-Group\src\SecurityUnit.cpp:17
+#2  0x00007ff6af63297a in CentralDispatchMediator::notify (this=0x5ff5c0, sender=0x5ff9f0, event="HOSPITAL_ESCORT_REQUESTED", data="MED-01") at C:\Users\terva\OneDrive\Documents\214 Assignment 1\CampusGuard-Group\src\CentralDispatchMediator.cpp:37
+#3  0x00007ff6af636962 in ResponseUnit::sendEvent (this=0x5ff9f0, event="HOSPITAL_ESCORT_REQUESTED", data="MED-01") at C:\Users\terva\OneDrive\Documents\214 Assignment 1\CampusGuard-Group\src\ResponseUnit.cpp:24
+#4  0x00007ff6af6377e6 in MedicalTeam::requestHospitalEscort (this=0x5ff9f0) at tmp/group-baseline-bug/MedicalTeam.cpp:14
+#5  0x00007ff6af635051 in main () at C:\Users\terva\OneDrive\Documents\214 Assignment 1\CampusGuard-Group\src\main.cpp:41
+$1 = "MED-01"
+[CentralDispatchMediator] MED-01 -> HOSPITAL_ESCORT_REQUESTED (MED-01)
+[Unit SEC-01] HOSPITAL_ESCORT_REQUESTED at MED-01 from MED-01
+[Adapter] Unknown zone: MED-01
+Fatal: Cannot open escort route
+[Thread 25588.0x4d58 exited with code 1]
+[Thread 25588.0x2bcc exited with code 1]
+[Thread 25588.0x3e64 exited with code 1]
+[Inferior 1 (process 25588) exited with code 01]
