@@ -1,0 +1,187 @@
+Breakpoint 1 at 0x13afd: file src/SecurityUnit.cpp, line 9.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, SecurityUnit::clearEscortRoute (this=0x7fffffffe900, zone="Chemistry Lab") at src/SecurityUnit.cpp:9
+9	void SecurityUnit::clearEscortRoute(const std::string& zone) {
+#0  SecurityUnit::clearEscortRoute (this=0x7fffffffe900, zone="Chemistry Lab") at src/SecurityUnit.cpp:9
+#1  0x0000555555567d25 in SecurityUnit::receiveNotification (this=0x7fffffffe900, sender="MED-01", event="HOSPITAL_ESCORT_REQUESTED", data="Chemistry Lab") at src/SecurityUnit.cpp:17
+#2  0x000055555555a2f0 in CentralDispatchMediator::notify (this=0x7fffffffe6d0, sender=0x7fffffffeb40, event="HOSPITAL_ESCORT_REQUESTED", data="Chemistry Lab") at src/CentralDispatchMediator.cpp:37
+#3  0x0000555555567684 in ResponseUnit::sendEvent (this=0x7fffffffeb40, event="HOSPITAL_ESCORT_REQUESTED", data="Chemistry Lab") at src/ResponseUnit.cpp:24
+#4  0x0000555555564b6c in MedicalTeam::requestHospitalEscort (this=0x7fffffffeb40) at src/MedicalTeam.cpp:12
+#5  0x000055555556a5df in main () at src/main.cpp:41
+$1 = "Chemistry Lab"
+[Incident #1001] Reported: Solvent leak and fumes at Chemistry Lab
+[Incident #1002] Reported: Unauthorised armed entry at Library
+
+=== Story 1: chemical spill ===
+[Incident #1001] Rejected resolve while Reported
+[OperatorConsole] Execute PerimeterLockCommand
+[Legacy] sector=101 lockFlag=1 result=0
+[Adapter] Chemistry Lab -> sector 101: locked
+[OperatorConsole] Undo PerimeterLockCommand
+[Legacy] sector=101 lockFlag=0 result=0
+[Adapter] Chemistry Lab -> sector 101: unlocked
+[Facade] Chemical spill: Chemistry Lab
+[OperatorConsole] Execute DispatchUnitCommand
+[Incident #1001] Reported -> Dispatched
+[Unit SEC-01] Assigned to incident #1001
+[CentralDispatchMediator] SEC-01 -> UNIT_DISPATCHED (Chemistry Lab)
+[Unit MED-01] UNIT_DISPATCHED at Chemistry Lab from SEC-01
+[Unit FAC-01] UNIT_DISPATCHED at Chemistry Lab from SEC-01
+[Unit FIRE-01] UNIT_DISPATCHED at Chemistry Lab from SEC-01
+[OperatorConsole] Execute ApplyStrategyCommand
+[Legacy] sector=101 lockFlag=1 result=0
+[Adapter] Chemistry Lab -> sector 101: locked
+[Strategy: Lockdown Containment] Restrict access to Chemistry Lab
+[CentralDispatchMediator] SYSTEM -> LOCKDOWN_TRIGGERED (Chemistry Lab)
+[Unit SEC-01] LOCKDOWN_TRIGGERED at Chemistry Lab from SYSTEM
+[Unit MED-01] LOCKDOWN_TRIGGERED at Chemistry Lab from SYSTEM
+[MedicalTeam MED-01] Triage deployed outside Chemistry Lab
+[CentralDispatchMediator] MED-01 -> TRIAGE_DEPLOYED (Chemistry Lab)
+[Unit SEC-01] TRIAGE_DEPLOYED at Chemistry Lab from MED-01
+[Unit FAC-01] TRIAGE_DEPLOYED at Chemistry Lab from MED-01
+[Unit FIRE-01] TRIAGE_DEPLOYED at Chemistry Lab from MED-01
+[Unit FAC-01] LOCKDOWN_TRIGGERED at Chemistry Lab from SYSTEM
+[Unit FIRE-01] LOCKDOWN_TRIGGERED at Chemistry Lab from SYSTEM
+[CentralDispatchMediator] SYSTEM -> CHEMICAL_SPILL (Chemistry Lab)
+[Unit SEC-01] CHEMICAL_SPILL at Chemistry Lab from SYSTEM
+[Legacy] sector=101 lockFlag=1 result=0
+[Adapter] Chemistry Lab -> sector 101: locked
+[CentralDispatchMediator] SEC-01 -> ZONE_CORDONED (Chemistry Lab)
+[Unit MED-01] ZONE_CORDONED at Chemistry Lab from SEC-01
+[MedicalTeam MED-01] Triage deployed outside Chemistry Lab
+[CentralDispatchMediator] MED-01 -> TRIAGE_DEPLOYED (Chemistry Lab)
+[Unit SEC-01] TRIAGE_DEPLOYED at Chemistry Lab from MED-01
+[Unit FAC-01] TRIAGE_DEPLOYED at Chemistry Lab from MED-01
+[Unit FIRE-01] TRIAGE_DEPLOYED at Chemistry Lab from MED-01
+[Unit FAC-01] ZONE_CORDONED at Chemistry Lab from SEC-01
+[Unit FIRE-01] ZONE_CORDONED at Chemistry Lab from SEC-01
+[SecurityUnit SEC-01] Cordon established at Chemistry Lab
+[Unit MED-01] CHEMICAL_SPILL at Chemistry Lab from SYSTEM
+[Unit FAC-01] CHEMICAL_SPILL at Chemistry Lab from SYSTEM
+[FacilitiesUnit FAC-01] HVAC isolated in Chemistry Lab
+[CentralDispatchMediator] FAC-01 -> HVAC_ISOLATED (Chemistry Lab)
+[Unit SEC-01] HVAC_ISOLATED at Chemistry Lab from FAC-01
+[Unit MED-01] HVAC_ISOLATED at Chemistry Lab from FAC-01
+[Unit FIRE-01] HVAC_ISOLATED at Chemistry Lab from FAC-01
+[Unit FIRE-01] CHEMICAL_SPILL at Chemistry Lab from SYSTEM
+[FireResponseUnit FIRE-01] Chemical response deployed at Chemistry Lab
+[CentralDispatchMediator] MED-01 -> HOSPITAL_ESCORT_REQUESTED (Chemistry Lab)
+[Unit SEC-01] HOSPITAL_ESCORT_REQUESTED at Chemistry Lab from MED-01
+[Legacy] sector=101 lockFlag=0 result=0
+[Adapter] Chemistry Lab -> sector 101: unlocked
+[CentralDispatchMediator] SEC-01 -> ROUTE_CLEARED (Chemistry Lab)
+[Unit MED-01] ROUTE_CLEARED at Chemistry Lab from SEC-01
+[Unit FAC-01] ROUTE_CLEARED at Chemistry Lab from SEC-01
+[Unit FIRE-01] ROUTE_CLEARED at Chemistry Lab from SEC-01
+[SecurityUnit SEC-01] Escort route cleared at Chemistry Lab
+[Unit FAC-01] HOSPITAL_ESCORT_REQUESTED at Chemistry Lab from MED-01
+[Unit FIRE-01] HOSPITAL_ESCORT_REQUESTED at Chemistry Lab from MED-01
+[Facade] General evacuation: Chemistry Lab
+[OperatorConsole] Execute ApplyStrategyCommand
+[Legacy] sector=101 lockFlag=0 result=0
+[Adapter] Chemistry Lab -> sector 101: unlocked
+[Strategy: Full Evacuation] Evacuate Chemistry Lab
+[CentralDispatchMediator] SYSTEM -> EVACUATION_ORDERED (Chemistry Lab)
+[Unit SEC-01] EVACUATION_ORDERED at Chemistry Lab from SYSTEM
+[Unit MED-01] EVACUATION_ORDERED at Chemistry Lab from SYSTEM
+[MedicalTeam MED-01] Triage deployed outside Chemistry Lab
+[CentralDispatchMediator] MED-01 -> TRIAGE_DEPLOYED (Chemistry Lab)
+[Unit SEC-01] TRIAGE_DEPLOYED at Chemistry Lab from MED-01
+[Unit FAC-01] TRIAGE_DEPLOYED at Chemistry Lab from MED-01
+[Unit FIRE-01] TRIAGE_DEPLOYED at Chemistry Lab from MED-01
+[Unit FAC-01] EVACUATION_ORDERED at Chemistry Lab from SYSTEM
+[Unit FIRE-01] EVACUATION_ORDERED at Chemistry Lab from SYSTEM
+[Operator] Hazard team confirms containment
+[Incident #1001] Dispatched -> Contained
+[CentralDispatchMediator] SYSTEM -> INCIDENT_CONTAINED (Chemistry Lab)
+[Unit SEC-01] INCIDENT_CONTAINED at Chemistry Lab from SYSTEM
+[Unit MED-01] INCIDENT_CONTAINED at Chemistry Lab from SYSTEM
+[Unit FAC-01] INCIDENT_CONTAINED at Chemistry Lab from SYSTEM
+[Unit FIRE-01] INCIDENT_CONTAINED at Chemistry Lab from SYSTEM
+[Legacy] sector=101 lockFlag=0 result=0
+[Adapter] Chemistry Lab -> sector 101: unlocked
+[Incident #1001] Contained -> Resolved
+[CentralDispatchMediator] SYSTEM -> INCIDENT_RESOLVED (Chemistry Lab)
+[Unit SEC-01] Released from incident #1001
+[Unit SEC-01] INCIDENT_RESOLVED at Chemistry Lab from SYSTEM
+[Unit MED-01] INCIDENT_RESOLVED at Chemistry Lab from SYSTEM
+[Unit FAC-01] INCIDENT_RESOLVED at Chemistry Lab from SYSTEM
+[FacilitiesUnit FAC-01] HVAC restored in Chemistry Lab
+[CentralDispatchMediator] FAC-01 -> HVAC_RESTORED (Chemistry Lab)
+[Unit SEC-01] HVAC_RESTORED at Chemistry Lab from FAC-01
+[Unit MED-01] HVAC_RESTORED at Chemistry Lab from FAC-01
+[Unit FIRE-01] HVAC_RESTORED at Chemistry Lab from FAC-01
+[Unit FIRE-01] INCIDENT_RESOLVED at Chemistry Lab from SYSTEM
+
+=== Story 2: library intruder ===
+[OperatorConsole] Execute PerimeterLockCommand
+[OperatorConsole] Action failed: Cannot read door status for Unknown Hall
+[Facade] Active intruder: Library
+[Expected failure] Cannot read door status for Library
+[OperatorConsole] Execute DispatchUnitCommand
+[Incident #1002] Reported -> Dispatched
+[Unit SEC-01] Assigned to incident #1002
+[CentralDispatchMediator] SEC-01 -> UNIT_DISPATCHED (Library)
+[Unit MED-01] UNIT_DISPATCHED at Library from SEC-01
+[Unit FAC-01] UNIT_DISPATCHED at Library from SEC-01
+[Unit FIRE-01] UNIT_DISPATCHED at Library from SEC-01
+[OperatorConsole] Undo DispatchUnitCommand
+[Incident #1002] Dispatched -> Reported
+[Unit SEC-01] Released from incident #1002
+[CentralDispatchMediator] SEC-01 -> DISPATCH_CANCELLED (Library)
+[Unit MED-01] DISPATCH_CANCELLED at Library from SEC-01
+[Unit FAC-01] DISPATCH_CANCELLED at Library from SEC-01
+[Unit FIRE-01] DISPATCH_CANCELLED at Library from SEC-01
+[Facade] Active intruder: Library
+[OperatorConsole] Execute DispatchUnitCommand
+[Incident #1002] Reported -> Dispatched
+[Unit SEC-01] Assigned to incident #1002
+[CentralDispatchMediator] SEC-01 -> UNIT_DISPATCHED (Library)
+[Unit MED-01] UNIT_DISPATCHED at Library from SEC-01
+[Unit FAC-01] UNIT_DISPATCHED at Library from SEC-01
+[Unit FIRE-01] UNIT_DISPATCHED at Library from SEC-01
+[OperatorConsole] Execute ApplyStrategyCommand
+[Legacy] sector=202 lockFlag=1 result=0
+[Adapter] Library -> sector 202: locked
+[Strategy: Lockdown Containment] Restrict access to Library
+[CentralDispatchMediator] SYSTEM -> LOCKDOWN_TRIGGERED (Library)
+[Unit SEC-01] LOCKDOWN_TRIGGERED at Library from SYSTEM
+[Unit MED-01] LOCKDOWN_TRIGGERED at Library from SYSTEM
+[MedicalTeam MED-01] Triage deployed outside Library
+[CentralDispatchMediator] MED-01 -> TRIAGE_DEPLOYED (Library)
+[Unit SEC-01] TRIAGE_DEPLOYED at Library from MED-01
+[Unit FAC-01] TRIAGE_DEPLOYED at Library from MED-01
+[Unit FIRE-01] TRIAGE_DEPLOYED at Library from MED-01
+[Unit FAC-01] LOCKDOWN_TRIGGERED at Library from SYSTEM
+[Unit FIRE-01] LOCKDOWN_TRIGGERED at Library from SYSTEM
+[OperatorConsole] Undo ApplyStrategyCommand
+[Command] Issued evacuation/shelter instructions cannot be recalled by undo; use a follow-up workflow
+[Operator] Security confirms containment
+[Incident #1002] Dispatched -> Contained
+[CentralDispatchMediator] SYSTEM -> INCIDENT_CONTAINED (Library)
+[Unit SEC-01] INCIDENT_CONTAINED at Library from SYSTEM
+[Unit MED-01] INCIDENT_CONTAINED at Library from SYSTEM
+[Unit FAC-01] INCIDENT_CONTAINED at Library from SYSTEM
+[Unit FIRE-01] INCIDENT_CONTAINED at Library from SYSTEM
+[Legacy] sector=202 lockFlag=0 result=0
+[Adapter] Library -> sector 202: unlocked
+[Incident #1002] Contained -> Resolved
+[CentralDispatchMediator] SYSTEM -> INCIDENT_RESOLVED (Library)
+[Unit SEC-01] Released from incident #1002
+[Unit SEC-01] INCIDENT_RESOLVED at Library from SYSTEM
+[Unit MED-01] INCIDENT_RESOLVED at Library from SYSTEM
+[Unit FAC-01] INCIDENT_RESOLVED at Library from SYSTEM
+[FacilitiesUnit FAC-01] HVAC restored in Library
+[CentralDispatchMediator] FAC-01 -> HVAC_RESTORED (Library)
+[Unit SEC-01] HVAC_RESTORED at Library from FAC-01
+[Unit MED-01] HVAC_RESTORED at Library from FAC-01
+[Unit FIRE-01] HVAC_RESTORED at Library from FAC-01
+[Unit FIRE-01] INCIDENT_RESOLVED at Library from SYSTEM
+
+=== Final report ===
+1001: Resolved
+1002: Resolved
+Security available: true
+[Inferior 1 (process 17) exited normally]

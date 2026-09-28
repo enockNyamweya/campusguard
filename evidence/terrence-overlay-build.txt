@@ -1,0 +1,43 @@
+C:\Users\terva\OneDrive\Documents\214 Assignment 1\tmp\terrence-compatibility\src\FacilitiesUnit.cpp: In member function 'virtual void FacilitiesUnit::receiveNotification(const std::string&, const std::string&, const std::string&)':
+C:\Users\terva\OneDrive\Documents\214 Assignment 1\tmp\terrence-compatibility\src\FacilitiesUnit.cpp:17:61: warning: unused parameter 'senderId' [-Wunused-parameter]
+   17 | void FacilitiesUnit::receiveNotification(const std::string& senderId, const std::string& event, const std::string& data) {
+      |                                          ~~~~~~~~~~~~~~~~~~~^~~~~~~~
+C:\Users\terva\OneDrive\Documents\214 Assignment 1\tmp\terrence-compatibility\src\LegacyTurnstileSystem.cpp: In member function 'int LegacyTurnstileSystem::raw_set_barrier(int, int)':
+C:\Users\terva\OneDrive\Documents\214 Assignment 1\tmp\terrence-compatibility\src\LegacyTurnstileSystem.cpp:3:48: warning: unused parameter 'sectorCode' [-Wunused-parameter]
+    3 | int LegacyTurnstileSystem::raw_set_barrier(int sectorCode, int lockFlag) {
+      |                                            ~~~~^~~~~~~~~~
+C:\Users\terva\OneDrive\Documents\214 Assignment 1\tmp\terrence-compatibility\src\LegacyTurnstileSystem.cpp:3:64: warning: unused parameter 'lockFlag' [-Wunused-parameter]
+    3 | int LegacyTurnstileSystem::raw_set_barrier(int sectorCode, int lockFlag) {
+      |                                                            ~~~~^~~~~~~~
+C:\Users\terva\OneDrive\Documents\214 Assignment 1\tmp\terrence-compatibility\src\LegacyTurnstileSystem.cpp: In member function 'int LegacyTurnstileSystem::get_sector_status(int)':
+C:\Users\terva\OneDrive\Documents\214 Assignment 1\tmp\terrence-compatibility\src\LegacyTurnstileSystem.cpp:8:50: warning: unused parameter 'sectorCode' [-Wunused-parameter]
+    8 | int LegacyTurnstileSystem::get_sector_status(int sectorCode) {
+      |                                              ~~~~^~~~~~~~~~
+C:\Users\terva\OneDrive\Documents\214 Assignment 1\tmp\terrence-compatibility\src\MedicalTeam.cpp: In member function 'virtual void MedicalTeam::receiveNotification(const std::string&, const std::string&, const std::string&)':
+C:\Users\terva\OneDrive\Documents\214 Assignment 1\tmp\terrence-compatibility\src\MedicalTeam.cpp:17:58: warning: unused parameter 'senderId' [-Wunused-parameter]
+   17 | void MedicalTeam::receiveNotification(const std::string& senderId, const std::string& event, const std::string& data) {
+      |                                       ~~~~~~~~~~~~~~~~~~~^~~~~~~~
+C:\Users\terva\OneDrive\Documents\214 Assignment 1\tmp\terrence-compatibility\src\SecurityUnit.cpp: In member function 'virtual void SecurityUnit::receiveNotification(const std::string&, const std::string&, const std::string&)':
+C:\Users\terva\OneDrive\Documents\214 Assignment 1\tmp\terrence-compatibility\src\SecurityUnit.cpp:17:59: warning: unused parameter 'senderId' [-Wunused-parameter]
+   17 | void SecurityUnit::receiveNotification(const std::string& senderId, const std::string& event, const std::string& data) {
+      |                                        ~~~~~~~~~~~~~~~~~~~^~~~~~~~
+C:\Users\terva\OneDrive\Documents\214 Assignment 1\tmp\terrence-compatibility\src\TurnstileAdapter.cpp: In member function 'int TurnstileAdapter::mapZoneToSector(const std::string&)':
+C:\Users\terva\OneDrive\Documents\214 Assignment 1\tmp\terrence-compatibility\src\TurnstileAdapter.cpp:3:58: warning: unused parameter 'zone' [-Wunused-parameter]
+    3 | int TurnstileAdapter::mapZoneToSector(const std::string& zone) {
+      |                                       ~~~~~~~~~~~~~~~~~~~^~~~
+C:\Users\terva\OneDrive\Documents\214 Assignment 1\tmp\terrence-compatibility\src\TurnstileAdapter.cpp: In constructor 'TurnstileAdapter::TurnstileAdapter(LegacyTurnstileSystem*)':
+C:\Users\terva\OneDrive\Documents\214 Assignment 1\tmp\terrence-compatibility\src\TurnstileAdapter.cpp:8:59: warning: unused parameter 'legacy' [-Wunused-parameter]
+    8 | TurnstileAdapter::TurnstileAdapter(LegacyTurnstileSystem* legacy) {
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+C:\Users\terva\OneDrive\Documents\214 Assignment 1\tmp\terrence-compatibility\src\TurnstileAdapter.cpp: In member function 'virtual bool TurnstileAdapter::lockZone(const std::string&)':
+C:\Users\terva\OneDrive\Documents\214 Assignment 1\tmp\terrence-compatibility\src\TurnstileAdapter.cpp:17:52: warning: unused parameter 'zone' [-Wunused-parameter]
+   17 | bool TurnstileAdapter::lockZone(const std::string& zone) {
+      |                                 ~~~~~~~~~~~~~~~~~~~^~~~
+C:\Users\terva\OneDrive\Documents\214 Assignment 1\tmp\terrence-compatibility\src\TurnstileAdapter.cpp: In member function 'virtual bool TurnstileAdapter::unlockZone(const std::string&)':
+C:\Users\terva\OneDrive\Documents\214 Assignment 1\tmp\terrence-compatibility\src\TurnstileAdapter.cpp:22:54: warning: unused parameter 'zone' [-Wunused-parameter]
+   22 | bool TurnstileAdapter::unlockZone(const std::string& zone) {
+      |                                   ~~~~~~~~~~~~~~~~~~~^~~~
+C:\Users\terva\OneDrive\Documents\214 Assignment 1\tmp\terrence-compatibility\src\TurnstileAdapter.cpp: In member function 'virtual bool TurnstileAdapter::isZoneLocked(const std::string&)':
+C:\Users\terva\OneDrive\Documents\214 Assignment 1\tmp\terrence-compatibility\src\TurnstileAdapter.cpp:27:56: warning: unused parameter 'zone' [-Wunused-parameter]
+   27 | bool TurnstileAdapter::isZoneLocked(const std::string& zone) {
+      |                                     ~~~~~~~~~~~~~~~~~~~^~~~

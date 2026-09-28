@@ -1,0 +1,28 @@
+g++ -std=c++11 -Wall -Wextra -Wpedantic -Werror -g -O0 -Isrc src/Incident.cpp src/IncidentState.cpp src/ReportedState.cpp src/DispatchedState.cpp src/ContainedState.cpp src/ResolvedState.cpp tests/incident_state_tests.cpp -o incident_state_tests.exe
+./incident_state_tests.exe
+[Incident #101] Reported: Chemical spill at Chemistry Lab
+[Incident #202] Reported: Intruder at Library
+[Incident #101] Rejected contain while Reported
+[Incident #101] Rejected resolve while Reported
+[Incident #101] Rejected cancel dispatch while Reported
+[Incident #101] Reported -> Dispatched
+[Incident #101] Rejected dispatch while Dispatched
+[Incident #101] Rejected resolve while Dispatched
+[Incident #101] Dispatched -> Reported
+[Incident #101] Reported -> Dispatched
+[Incident #101] Dispatched -> Contained
+[Incident #101] Rejected dispatch while Contained
+[Incident #101] Rejected contain while Contained
+[Incident #101] Rejected cancel dispatch while Contained
+[Incident #101] Contained -> Resolved
+[Incident #101] Rejected dispatch while Resolved
+[Incident #101] Rejected contain while Resolved
+[Incident #101] Rejected resolve while Resolved
+[Incident #101] Rejected cancel dispatch while Resolved
+[Incident #202] Reported -> Dispatched
+[Incident #202] Dispatched -> Contained
+[Incident #202] Contained -> Resolved
+[Incident #303] Reported: Lifetime test at Student Centre
+[Incident #303] Tracking -> Reported
+[Incident #303] Rejected contain while Tracking
+PASS: 48 Incident/State checks
