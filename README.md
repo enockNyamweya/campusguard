@@ -24,13 +24,27 @@ CampusGuard is an emergency-response coordination platform written in C++11. It 
 ## 3. Build and Run
 
 ### 3.1 Docker (Required for Demonstration)
+
+**1. Compile and Run Normally:**
 ```bash
 docker compose up --build
 ```
+*(To stop and clean up containers: `docker compose down`)*
 
-To stop containers:
+**2. Check for Memory Leaks (Valgrind):**
 ```bash
-docker compose down
+docker compose run --rm campusguard valgrind --leak-check=full ./campusguard
+```
+
+**3. Debugging (GDB):**
+```bash
+docker compose run --rm campusguard gdb ./campusguard
+```
+*(GDB Quick Guide: Type `break main` to set a breakpoint, `run` to start the program, `next` to step line-by-line, and `step` to go inside a function).*
+
+**4. Open an Interactive Shell:**
+```bash
+docker compose run --rm campusguard bash
 ```
 
 ### 3.2 Local
